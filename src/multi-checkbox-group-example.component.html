@@ -1,0 +1,18 @@
+<!-- custom-select.component.html -->
+<div class="select-all">
+  <label>
+    <input type="checkbox" [ngModel]="selectAll" (ngModelChange)="toggleSelectAll()">Select All
+  </label>
+  <label>
+    <input type="checkbox" [ngModel]="selectFiltered" (ngModelChange)="toggleSelectFiltered()" [disabled]="selectAll">Select Filtered
+  </label>
+</div>
+<ng-select [items]="items"
+           [(ngModel)]="selectedItems"
+           [multiple]="true"
+           [closeOnSelect]="false">
+  <ng-template ng-option-tmp let-item="item" let-item$="item$" let-index="index">
+    <input type="checkbox" [ngModel]="isSelected(item)" (ngModelChange)="toggleSelection(item)">
+    {{ item }}
+  </ng-template>
+</ng-select>
